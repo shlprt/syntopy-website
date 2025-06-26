@@ -60,6 +60,10 @@
       <input type="text" name="name", placeholder="Ihr/Dein Name", required />
     </label>
 
+     <label>Abteilung:
+      <input type="text" name="department", placeholder="Abteilung", required />
+    </label>
+	
     <label>Ort / Adresse:
       <input type="text" name="location", placeholder="Adresse der Fläche"/>
     </label>
@@ -141,6 +145,7 @@
 
       const props = {
         name: form.elements['name'].value,
+	department: form.elements['department'].value,
         location: form.elements['location'].value,
         groesse: form.elements['groesse'].value,
         oberflaeche: form.elements['oberflaeche'].value
