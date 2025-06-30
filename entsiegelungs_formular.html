@@ -54,8 +54,8 @@
 </div>
 
    <div id="kategorie">
-  <label for="kategorie">Bitte wählen Sie zuerst aus, ob es sich um einen Vorschlag zur entsiegelung handelt, oder um eine bereits entsiegelte Fläche, die gemeldet werden soll. </label>
-  <select id="kategorie">
+  <label for="kategorieSelect">Bitte wählen Sie zuerst aus, ob es sich um einen Vorschlag zur entsiegelung handelt, oder um eine bereits entsiegelte Fläche, die gemeldet werden soll. </label>
+  <select id="kategorieSelect">
     <option value="">Bitte auswählen</option>
     <option value="vorschlag">Entsiegelungs Vorschlag</option>
     <option value="entsiegelt">Entsiegelte Fläche</option>
@@ -167,7 +167,7 @@
         location: form.elements['location'].value,
         groesse: form.elements['groesse'].value,
         oberflaeche: form.elements['oberflaeche'].value,
-        kategorie: document.getElementById('kategorie').value
+        kategorie: document.getElementById('kategorieSelect').value
       };
 
       const feature = {
@@ -181,7 +181,7 @@
     });
   </script>
   <script>
-document.getElementById('kategorie').addEventListener('change', function() {
+document.getElementById('kategorieSelect').addEventListener('change', function() {
   const val = this.value;
   document.getElementById('vorschlagForm').style.display = (val === 'vorschlag') ? 'block' : 'none';
   document.getElementById('entsiegeltForm').style.display = (val === 'entsiegelt') ? 'block' : 'none';
