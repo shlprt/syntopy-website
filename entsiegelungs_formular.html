@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -27,6 +27,10 @@
       padding: 1em;
       margin-bottom: 1em;
     }
+    .dragover {
+      border: 2px dashed #3399ff;
+      background: #ddf0ff;
+    }
   </style>
 </head>
 <body>
@@ -35,109 +39,129 @@
   <p>Stadt Flensburg – Stadtenwicklung & Klimaschutz</p>
 </header>
 
-  <main>
-  
-<div class="infobox">
-  <h2>📍 Hinweise zur Meldung von Entsiegelungsflächen in Flensburg</h2>
-  <p>
-    Bitte tragen Sie die Informationen zur versiegelten Fläche in das Formular ein und markieren Sie deren Lage auf der Karte. 
-    Alle Angaben werden direkt an das Flächenmanagement der Stadt Flensburg übermittelt.
-  </p>
-  <p>
-    Sie können entweder die gesamte Fläche zeichnen oder einen einzelnen Punkt setzen. Je vollständiger und präziser Ihre Angaben sind, 
-    desto besser können wir sie für die städtische Planung nutzen.
-  </p>
-  <p>
-    Bei Rückfragen wenden Sie sich gerne per E-Mail an: 
-    <a href="mailto:flaechenmanagement@flensburg.de">flaechenmanagement@flensburg.de</a>
-  </p>
-</div>
+<main>
+  <div class="infobox">
+    <h2>📍 Hinweise zur Meldung von Entsiegelungsflächen in Flensburg</h2>
+    <p>
+      Bitte tragen Sie die Informationen zur versiegelten Fläche in das Formular ein und markieren Sie deren Lage auf der Karte. 
+      Alle Angaben werden direkt an das Flächenmanagement der Stadt Flensburg übermittelt.
+    </p>
+    <p>
+      Sie können entweder die gesamte Fläche zeichnen oder einen einzelnen Punkt setzen. Je vollständiger und präziser Ihre Angaben sind, 
+      desto besser können wir sie für die städtische Planung nutzen.
+    </p>
+    <p>
+      Bei Rückfragen wenden Sie sich gerne per E-Mail an: 
+      <a href="mailto:flaechenmanagement@flensburg.de">flaechenmanagement@flensburg.de</a>
+    </p>
+  </div>
 
-   <div id="kategorie">
-  <label for="kategorieSelect">Bitte wählen Sie zuerst aus, ob es sich um einen Vorschlag zur entsiegelung handelt, oder um eine bereits entsiegelte Fläche, die gemeldet werden soll. </label>
-  <select id="kategorieSelect">
-    <option value="">Bitte auswählen</option>
-    <option value="vorschlag">Entsiegelungs Vorschlag</option>
-    <option value="entsiegelt">Entsiegelte Fläche</option>
-  </select>
-</div>
+  <div id="kategorie-container">
+    <label for="kategorieSelect">Bitte wählen Sie zuerst aus, ob es sich um einen Vorschlag zur Entsiegelung handelt oder um eine bereits entsiegelte Fläche, die gemeldet werden soll.</label>
+    <select id="kategorieSelect" name="kategorie">
+      <option value="">Bitte auswählen</option>
+      <option value="vorschlag">Entsiegelungs Vorschlag</option>
+      <option value="entsiegelt">Entsiegelte Fläche</option>
+    </select>
+  </div>
 
   <div id="vorschlagForm" style="display:none;">
-  <form id="geoForm" action="https://formspree.io/f/mldbkjne" method="POST">
-    <img src="https://www.flensburg.de/layout/_default/assets/img/logo_stadt-flensburg-2016.png?__ts=1454507653" alt="Stadt Flensburg" style="height: 40px; margin-bottom: 0.5em;">
-    <label>Name:
-      <input type="text" name="name", placeholder="Ihr/Dein Name (Pflichtfeld)", required />
-    </label>
+    <form id="geoForm" action="https://formspree.io/f/mldbkjne" method="POST" enctype="multipart/form-data">
+      <img src="https://www.flensburg.de/layout/_default/assets/img/logo_stadt-flensburg-2016.png?__ts=1454507653" alt="Stadt Flensburg" style="height: 40px; margin-bottom: 0.5em;">
+      
+      <label>Name:
+        <input type="text" name="name" placeholder="Ihr/Dein Name (Pflichtfeld)" required />
+      </label>
 
-     <label>Abteilung:
-      <input type="text" name="department", placeholder="Abteilung (Pflichtfeld)", required />
-    </label>
-	
-    <label>Ort / Adresse:
-      <input type="text" name="location", placeholder="Adresse der Fläche"/>
-    </label>
-	
-    <label>E-Mail:
-      <input type="email" name="email", placeholder="Ihre/Deine Email (Pflichtfeld)", required/>
-    </label>
-    
-    <label>Größe (m²):
-      <input type="number" name="groesse", placeholder="Grösse in m2 (ca.)" />
-    </label>
-    
-     <label>Kurzbeschreibung:
-      <input type="text" name="kurzbeschreibung" placeholder="Warum ist diese Fläche aus Ihrer / Deiner Sicht geeignet?"/>
-     </label>
+      <label>Abteilung:
+        <input type="text" name="department" placeholder="Abteilung (Pflichtfeld)" required />
+      </label>
+      
+      <label>Ort / Adresse:
+        <input type="text" name="location" placeholder="Adresse der Fläche"/>
+      </label>
+      
+      <label>E-Mail:
+        <input type="email" name="email" placeholder="Ihre/Deine Email (Pflichtfeld)" required/>
+      </label>
+      
+      <label>Größe (m²):
+        <input type="number" name="groesse" placeholder="Größe in m² (ca.)" />
+      </label>
+      
+      <label>Kurzbeschreibung:
+        <input type="text" name="kurzbeschreibung" placeholder="Warum ist diese Fläche aus Ihrer / Deiner Sicht geeignet?"/>
+      </label>
 
-   <div class="upload-area" id="upload-area">
-    <p><strong>Foto hierher ziehen</strong> oder klicken, um auszuwählen</p>
-    <input type="file" name="photo" id="fileElem" accept="image/*" style="display:none">
-    </div>
+      <div class="upload-area" id="upload-area">
+        <p><strong>Foto hierher ziehen</strong> oder klicken, um auszuwählen</p>
+        <input type="file" name="photo" id="fileElem" accept="image/*" style="display:none">
+      </div>
 
-    <label>Oberfläche:
-      <select name="oberflaeche">
-        <option value="">Auswahl</option>
-        <option value="1">Asphalt</option>
-        <option value="2">Beton</option>
-        <option value="3">Pflaster (große Fuge)</option>
-        <option value="4">Pflaster (kleine Fuge)</option>
-        <option value="5">Betonplatten</option>
-        <option value="6">Mosaikpflaster</option>
-        <option value="7">Großpflaster (Naturstein)</option>
-        <option value="8">Kleinpflaster (Naturstein)</option>
-        <option value="9">Teilversiegelt</option>
-        <option value="10">Anderes</option>
-      </select>
-    </label>
+      <label>Oberfläche:
+        <select name="oberflaeche">
+          <option value="">Auswahl</option>
+          <option value="1">Asphalt</option>
+          <option value="2">Beton</option>
+          <option value="3">Pflaster (große Fuge)</option>
+          <option value="4">Pflaster (kleine Fuge)</option>
+          <option value="5">Betonplatten</option>
+          <option value="6">Mosaikpflaster</option>
+          <option value="7">Großpflaster (Naturstein)</option>
+          <option value="8">Kleinpflaster (Naturstein)</option>
+          <option value="9">Teilversiegelt</option>
+          <option value="10">Anderes</option>
+        </select>
+      </label>
 
-    <div id="map"></div>
-    <input type="hidden" name="geojson" id="geojson" />
+      <div id="map"></div>
+      <input type="hidden" name="geojson" id="geojson" />
 
-    <button type="submit">Absenden</button>
-  </form>
+      <button type="submit">Absenden</button>
+    </form>
   </div>
- 
- <div id="enstiegeltForm" style="display:none;">
- </div>
+
+  <div id="entsiegeltForm" style="display:none;">
+    <!-- Hier können Felder für bereits entsiegelte Flächen ergänzt werden -->
+  </div>
 
   <!-- Leaflet JS -->
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <!-- Leaflet Draw JS -->
   <script src="https://unpkg.com/leaflet-draw/dist/leaflet.draw.js"></script>
-  </main>
-   <footer>
-    <div class="footer-flex">
-      <img src="img/logo.svg" alt="syntopy.network Logo" width="48" height="48" />
-      <span>Powered by: &copy; 2025 syntopy.network. Alle Rechte vorbehalten. <a href="impressum.html">Impressum</a></span>
-    </div>
-  </footer>
-  <script>
-    const map = L.map('map').setView([54.78431, 9.43961], 14);
+</main>
+
+<footer>
+  <div class="footer-flex">
+    <img src="img/logo.svg" alt="syntopy.network Logo" width="48" height="48" />
+    <span>Powered by: &copy; 2025 syntopy.network. Alle Rechte vorbehalten. <a href="impressum.html">Impressum</a></span>
+  </div>
+</footer>
+
+<script>
+  let map;
+  let mapInitialized = false;
+  let drawnItems;
+
+  document.getElementById('kategorieSelect').addEventListener('change', function() {
+    const val = this.value;
+
+    document.getElementById('vorschlagForm').style.display = (val === 'vorschlag') ? 'block' : 'none';
+    document.getElementById('entsiegeltForm').style.display = (val === 'entsiegelt') ? 'block' : 'none';
+
+    if (val === 'vorschlag' && !mapInitialized) {
+      initMap();
+      mapInitialized = true;
+    }
+  });
+
+  function initMap() {
+    map = L.map('map').setView([54.78431, 9.43961], 14);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
 
-    const drawnItems = new L.FeatureGroup().addTo(map);
+    drawnItems = new L.FeatureGroup().addTo(map);
     const drawControl = new L.Control.Draw({
       draw: { polygon: true, rectangle: true, marker: true },
       edit: { featureGroup: drawnItems }
@@ -149,77 +173,72 @@
       drawnItems.addLayer(e.layer);
     });
 
-    const form = document.getElementById('geoForm');
-    form.addEventListener('submit', function(e) {
-      e.preventDefault(); // stop normal submit
-
-      const layers = drawnItems.getLayers();
-      if (!layers.length) {
-        alert('Bitte zeichnen Sie eine Fläche auf der Karte.');
-        return;
-      }
-
-      const geometry = layers[0].toGeoJSON().geometry;
-
-      const props = {
-        name: form.elements['name'].value,
-	department: form.elements['department'].value,
-        location: form.elements['location'].value,
-        groesse: form.elements['groesse'].value,
-        oberflaeche: form.elements['oberflaeche'].value,
-        kategorie: document.getElementById('kategorieSelect').value
-      };
-
-      const feature = {
-        type: 'Feature',
-        geometry: geometry,
-        properties: props
-      };
-
-      document.getElementById('geojson').value = JSON.stringify(feature);
-      form.submit();
-    });
-  </script>
-  <script>
-document.getElementById('kategorieSelect').addEventListener('change', function() {
-  const val = this.value;
-  document.getElementById('vorschlagForm').style.display = (val === 'vorschlag') ? 'block' : 'none';
-  document.getElementById('entsiegeltForm').style.display = (val === 'entsiegelt') ? 'block' : 'none';
-});
-</script>
-	<script>
-const uploadArea = document.getElementById('upload-area');
-const fileInput = document.getElementById('fileElem');
-
-uploadArea.addEventListener('click', () => {
-  fileInput.click();
-});
-
-uploadArea.addEventListener('dragover', (e) => {
-  e.preventDefault();
-  uploadArea.classList.add('dragover');
-});
-
-uploadArea.addEventListener('dragleave', () => {
-  uploadArea.classList.remove('dragover');
-});
-
-uploadArea.addEventListener('drop', (e) => {
-  e.preventDefault();
-  uploadArea.classList.remove('dragover');
-  
-  if (e.dataTransfer.files.length) {
-    fileInput.files = e.dataTransfer.files;
-    uploadArea.querySelector('p').textContent = `Ausgewählt: ${e.dataTransfer.files[0].name}`;
+    map.invalidateSize();
   }
-});
 
-fileInput.addEventListener('change', () => {
-  if (fileInput.files.length) {
-    uploadArea.querySelector('p').textContent = `Ausgewählt: ${fileInput.files[0].name}`;
-  }
-});
+  document.getElementById('geoForm').addEventListener('submit', function(e) {
+    const layers = drawnItems?.getLayers() || [];
+    if (!layers.length) {
+      e.preventDefault();
+      alert('Bitte zeichnen Sie eine Fläche auf der Karte.');
+      return;
+    }
+
+    const geometry = layers[0].toGeoJSON().geometry;
+
+    const props = {
+      name: this.elements['name'].value,
+      department: this.elements['department'].value,
+      location: this.elements['location'].value,
+      groesse: this.elements['groesse'].value,
+      oberflaeche: this.elements['oberflaeche'].value,
+      kategorie: document.getElementById('kategorieSelect').value
+    };
+
+    const feature = {
+      type: 'Feature',
+      geometry: geometry,
+      properties: props
+    };
+
+    document.getElementById('geojson').value = JSON.stringify(feature);
+    // Allow form to submit naturally
+  });
 </script>
+
+<script>
+  const uploadArea = document.getElementById('upload-area');
+  const fileInput = document.getElementById('fileElem');
+
+  uploadArea.addEventListener('click', () => {
+    fileInput.click();
+  });
+
+  uploadArea.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    uploadArea.classList.add('dragover');
+  });
+
+  uploadArea.addEventListener('dragleave', () => {
+    uploadArea.classList.remove('dragover');
+  });
+
+  uploadArea.addEventListener('drop', (e) => {
+    e.preventDefault();
+    uploadArea.classList.remove('dragover');
+    
+    if (e.dataTransfer.files.length) {
+      fileInput.files = e.dataTransfer.files;
+      uploadArea.querySelector('p').textContent = `Ausgewählt: ${e.dataTransfer.files[0].name}`;
+    }
+  });
+
+  fileInput.addEventListener('change', () => {
+    if (fileInput.files.length) {
+      uploadArea.querySelector('p').textContent = `Ausgewählt: ${fileInput.files[0].name}`;
+    }
+  });
+</script>
+
 </body>
 </html>
-
