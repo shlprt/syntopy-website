@@ -89,9 +89,10 @@
       <input type="text" name="kurzbeschreibung" placeholder="Warum ist diese Fläche aus Ihrer / Deiner Sicht geeignet?"/>
      </label>
 
-     <label>Upload Photo:
-      <input type="file" name="photo", placeholder="Foto (optional)"/>
-     </label>
+   <div class="upload-area" id="upload-area">
+    <p><strong>Foto hierher ziehen</strong> oder klicken, um auszuwählen</p>
+    <input type="file" name="photo" id="fileElem" accept="image/*" style="display:none">
+    </div>
 
     <label>Oberfläche:
       <select name="oberflaeche">
@@ -184,6 +185,39 @@ document.getElementById('kategorie').addEventListener('change', function() {
   const val = this.value;
   document.getElementById('vorschlagForm').style.display = (val === 'vorschlag') ? 'block' : 'none';
   document.getElementById('entsiegeltForm').style.display = (val === 'entsiegelt') ? 'block' : 'none';
+});
+</script>
+	<script>
+const uploadArea = document.getElementById('upload-area');
+const fileInput = document.getElementById('fileElem');
+
+uploadArea.addEventListener('click', () => {
+  fileInput.click();
+});
+
+uploadArea.addEventListener('dragover', (e) => {
+  e.preventDefault();
+  uploadArea.classList.add('dragover');
+});
+
+uploadArea.addEventListener('dragleave', () => {
+  uploadArea.classList.remove('dragover');
+});
+
+uploadArea.addEventListener('drop', (e) => {
+  e.preventDefault();
+  uploadArea.classList.remove('dragover');
+  
+  if (e.dataTransfer.files.length) {
+    fileInput.files = e.dataTransfer.files;
+    uploadArea.querySelector('p').textContent = `Ausgewählt: ${e.dataTransfer.files[0].name}`;
+  }
+});
+
+fileInput.addEventListener('change', () => {
+  if (fileInput.files.length) {
+    uploadArea.querySelector('p').textContent = `Ausgewählt: ${fileInput.files[0].name}`;
+  }
 });
 </script>
 </body>
