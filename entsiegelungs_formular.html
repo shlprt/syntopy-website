@@ -57,11 +57,11 @@
   <form id="geoForm" action="https://formspree.io/f/mldbkjne" method="POST">
     <img src="https://www.flensburg.de/layout/_default/assets/img/logo_stadt-flensburg-2016.png?__ts=1454507653" alt="Stadt Flensburg" style="height: 40px; margin-bottom: 0.5em;">
     <label>Name:
-      <input type="text" name="name", placeholder="Ihr/Dein Name", required />
+      <input type="text" name="name", placeholder="Ihr/Dein Name (Pflichtfeld)", required />
     </label>
 
      <label>Abteilung:
-      <input type="text" name="department", placeholder="Abteilung", required />
+      <input type="text" name="department", placeholder="Abteilung (Pflichtfeld)", required />
     </label>
 	
     <label>Ort / Adresse:
@@ -69,7 +69,7 @@
     </label>
 	
     <label>E-Mail:
-      <input type="email" name="email", placeholder="Ihre/Deine Email"/>
+      <input type="email" name="email", placeholder="Ihre/Deine Email (Pflichtfeld)", required/>
     </label>
     
     <label>Größe (m²):
@@ -78,7 +78,11 @@
     
      <label>Kurzbeschreibung:
       <input type="text" name="kurzbeschreibung" placeholder="Warum ist diese Fläche aus Ihrer / Deiner Sicht geeignet?"/>
-    </label>
+     </label>
+
+     <label>Upload Photo:
+      <input type="file" name="photo", placeholder="Foto (optional)"/>
+     </label>
 
     <label>Oberfläche:
       <select name="oberflaeche">
